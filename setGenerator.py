@@ -1,6 +1,6 @@
 import random
 
-length = 5
+length = int(input("Enter lenght of the set: "))
 arr = []
 
 for i in range(length):
@@ -11,17 +11,31 @@ try:
 
     for i in range(length):
         aleatory.write(f"{arr[i]}\n")
-finally:
+except:
+    print("Aleatory file fail.")
+else:
     aleatory.close()
 
-print(arr)
-
-"""
 arr.sort()
 
-print(arr)
+try:
+    ascending = open(f'{length}ascending.txt', 'w')
+
+    for i in range(length):
+        ascending.write(f"{arr[i]}\n")
+except:
+    print("Ascending file fail.")
+else:
+    ascending.close()
 
 arr.reverse()
 
-print(arr)
-"""
+try:
+    descending = open(f'{length}descending.txt', 'w')
+
+    for i in range(length):
+        descending.write(f"{arr[i]}\n")
+except:
+    print("Descending file fail.")
+else:
+    descending.close()
