@@ -1,41 +1,50 @@
 import random
 
-length = int(input("Enter lenght of the set: "))
-arr = []
-
-for i in range(length):
-    arr.append(random.randint(-length, length))
-
-try:
-    aleatory = open(f'{length}aleatory.txt', 'w')
+def saveFiles(floor: int, ceiling: int, length: int, saveAleatory: bool, saveAscending: bool, saveDescending: bool):
+    arr = []
+    arrSorted = False
 
     for i in range(length):
-        aleatory.write(f"{arr[i]}\n")
-except:
-    print("Aleatory file fail.")
-else:
-    aleatory.close()
+        arr.append(random.randint(floor, ceiling))
 
-arr.sort()
+    if saveAleatory:
+        try:
+            aleatory = open(f'{length}aleatory.txt', 'w')
 
-try:
-    ascending = open(f'{length}ascending.txt', 'w')
+            for i in range(length):
+                aleatory.write(f"{arr[i]}\n")
+        except:
+            print("Aleatory file fail.")
+        else:
+            aleatory.close()
 
-    for i in range(length):
-        ascending.write(f"{arr[i]}\n")
-except:
-    print("Ascending file fail.")
-else:
-    ascending.close()
+    if saveAscending:
+        arr.sort()
+        arrSorted = True
 
-arr.reverse()
+        try:
+            ascending = open(f'{length}ascending.txt', 'w')
 
-try:
-    descending = open(f'{length}descending.txt', 'w')
+            for i in range(length):
+                ascending.write(f"{arr[i]}\n")
+        except:
+            print("Ascending file fail.")
+        else:
+            ascending.close()
 
-    for i in range(length):
-        descending.write(f"{arr[i]}\n")
-except:
-    print("Descending file fail.")
-else:
-    descending.close()
+    if saveDescending:
+        if arrSorted:
+            arr.reverse()
+        else:
+            arr.sort()
+            arr.reverse()
+
+        try:
+            descending = open(f'{length}descending.txt', 'w')
+
+            for i in range(length):
+                descending.write(f"{arr[i]}\n")
+        except:
+            print("Descending file fail.")
+        else:
+            descending.close()
