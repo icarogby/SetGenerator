@@ -1,6 +1,6 @@
 from PyQt5.QtGui import QIcon
 from PyQt5.QtCore import Qt
-from PyQt5.QtWidgets import QMainWindow, QLabel, QPushButton, QLineEdit, QCheckBox
+from PyQt5.QtWidgets import QMainWindow, QLabel, QPushButton, QLineEdit, QCheckBox, QFileDialog
 import setGenerator as sg
 
 # colocar try catch
@@ -59,8 +59,6 @@ class Window(QMainWindow):
         generate_button.move(20, 160)
         generate_button.stateChanged.connect(self.descendingState)
 
-        # File location
-
         # Generate button
         generate_button = QPushButton("Generate", self)
         generate_button.move(140, 140)
@@ -68,10 +66,11 @@ class Window(QMainWindow):
 
         self.setGeometry(50, 50, 260, 200)
         self.setWindowTitle("Set Generator")
-        self.setWindowIcon(QIcon('Chess-Exibição atual.png')) # mudar
         self.show()
 
     def generate_button_clicked(self):
+        location = QFileDialog.getSaveFileName(self, "Save", self.length_line.text())[0]
+
         sg.saveFiles(
             int(self.floor_line.text()),
             int(self.ceiling_line.text()),
@@ -79,7 +78,9 @@ class Window(QMainWindow):
 
             self.aleatory,
             self.ascending,
-            self.descending
+            self.descending,
+
+            location
         )
 
     def aleatoryState(self, state):

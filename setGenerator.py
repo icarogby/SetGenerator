@@ -1,6 +1,6 @@
 import random
 
-def saveFiles(floor: int, ceiling: int, length: int, saveAleatory: bool, saveAscending: bool, saveDescending: bool):
+def saveFiles(floor: int, ceiling: int, length: int, saveAleatory: bool, saveAscending: bool, saveDescending: bool, location: str):
     arr = []
     arrSorted = False
 
@@ -9,7 +9,7 @@ def saveFiles(floor: int, ceiling: int, length: int, saveAleatory: bool, saveAsc
 
     if saveAleatory:
         try:
-            aleatory = open(f'{length}aleatory.txt', 'w')
+            aleatory = open(f'{location}aleatory.txt', 'w')
 
             for i in range(length):
                 aleatory.write(f"{arr[i]}\n")
@@ -23,7 +23,7 @@ def saveFiles(floor: int, ceiling: int, length: int, saveAleatory: bool, saveAsc
         arrSorted = True
 
         try:
-            ascending = open(f'{length}ascending.txt', 'w')
+            ascending = open(f'{location}ascending.txt', 'w')
 
             for i in range(length):
                 ascending.write(f"{arr[i]}\n")
@@ -40,7 +40,7 @@ def saveFiles(floor: int, ceiling: int, length: int, saveAleatory: bool, saveAsc
             arr.reverse()
 
         try:
-            descending = open(f'{length}descending.txt', 'w')
+            descending = open(f'{location}descending.txt', 'w')
 
             for i in range(length):
                 descending.write(f"{arr[i]}\n")
